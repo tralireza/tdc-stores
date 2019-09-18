@@ -124,6 +124,7 @@ drwxr-xr-x  6 alireza  staff     192 18 Sep 14:34 lib
 drwxr-xr-x  2 alireza  staff      64 18 Sep 13:16 output
 -rw-r--r--  1 alireza  staff      91 18 Sep 09:35 pytest.ini
 -rwxr-x---  1 alireza  staff    1175 18 Sep 13:16 run.sh
+-rw-r--r--  1 alireza  staff     286 18 Sep 18:31 requirements.txt
 -rw-r--r--  1 alireza  staff     124 18 Sep 11:53 stores-subset.json
 -rw-r--r--  1 alireza  staff    5760 17 Sep 19:39 stores.json
 drwxr-xr-x  7 alireza  staff     224 18 Sep 14:41 tests
