@@ -34,7 +34,7 @@ function run {
         echo "# build: Build Docker Image"
         echo "# api: Run API Server"
         echo "# cli: Run CLI"
-        echo "# tests: Run tests"
+        echo "# test: Run tests"
         echo "# ---"
         ;;
     esac

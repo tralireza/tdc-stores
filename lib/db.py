@@ -26,20 +26,24 @@ def postcode_normalize(postcode):
         return postcode[0: 4] + ' ' + postcode[4:]
     if len(postcode) == 5:
         return postcode[0: 2] + ' ' + postcode[2:]
-    return postcode[0: 3] + ' ' + postcode[3: ]
+    return postcode[0: 3] + ' ' + postcode[3:]
+
+
+def get(postcode):
+    for store in database['stores']:
+        if postcode == store[FLD_POSTCODE]:
+            return store
+    return None
 
 
 def search(postcode, radius, miles=False):
+    store = get(postcode)
+    origin = (store[FLD_LATITUDE], store[FLD_LONGITUDE])
+
     result = []
-
-    origin, target = (0, 0), (0, 0)
-    for store in database['stores']:
-        if postcode == store[FLD_POSTCODE]:
-            origin = (store[FLD_LATITUDE], store[FLD_LONGITUDE])
-            break
-
     for store in database['stores']:
         if postcode != store[FLD_POSTCODE]:
+            target = (0, 0)
             try:
                 target = (store[FLD_LATITUDE], store[FLD_LONGITUDE])
             except KeyError:

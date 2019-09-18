@@ -43,6 +43,22 @@ def stores():
 
 
 @bp.route('<postcode>', methods=['GET'])
+def get(postcode):
+    rw_lock.acquire_read()
+    try:
+        if database['ready']:
+            key = db.postcode_normalize(postcode)
+            if key in database['keys']:
+                return flask.jsonify(db.get(key))
+            else:
+                return flask.jsonify({'code': 4002, 'message': 'Postcode not found!'}), 404
+        else:
+            return flask.jsonify({'code': 4001, 'message': 'Data not ready yet! Please try again later.'}), 202
+    finally:
+        rw_lock.release_read()
+
+
+@bp.route('<postcode>/circle', methods=['GET'])
 def search(postcode):
     rw_lock.acquire_read()
     try:

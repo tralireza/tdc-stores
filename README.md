@@ -28,7 +28,8 @@ Once the api server is running in another terminal or a browser:
     Lists all the stores with the their geo data in 
     alphabetical order.
     
-3. curl http://127.0.0.1:5000/stores/al12rj?q=17 (curl http://127.0.0.1:5000/stores/al12rj?q=17km for Kilometer)
+3. curl http://127.0.0.1:5000/stores/al12rj/circle?q=17 
+(curl http://127.0.0.1:5000/stores/al12rj/circle?q=17km for Kilometer)
 
     Searches for all stores within **17 miles** from the 
     postcode **AL1 2RJ** sorted from north to south.
@@ -42,6 +43,8 @@ Once the api server is running in another terminal or a browser:
     
     Reloads the geo data updating records if necessary while 
     allowing the readers to list or search on the exiting data.
+    
+    (could be done the same time as 4)
 
 
 ## Requirements
@@ -144,7 +147,7 @@ $ ./run.sh
 # build: Build Docker Image
 # api: Run API Server
 # cli: Run CLI
-# tests: Run tests
+# test: Run tests
 # ---
 </pre>
 
@@ -218,8 +221,9 @@ $ ./run.sh cli -p rg402nu -d 10 search
 <pre>
 Endpoint              Methods  Path
 --------------------  -------  ----------------------------
+stores.get            GET      /stores/< postcode >
 stores.load_database  GET      /stores/admin/reset_database
 stores.load_database  GET      /stores/admin/load_database
-stores.search         GET      /stores/< postcode >?q=< radius [m|km]>
+stores.search         GET      /stores/< postcode >/circle?q=< radius [m|km]>
 stores.stores         GET      /stores
 </pre>

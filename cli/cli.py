@@ -82,10 +82,12 @@ def run():
         print(json.dumps(database['stores'], indent=2))
     if params['action'] == 'search':
         postcode = db.postcode_normalize(params['postcode'])
-        distance, miles = distance_normalise(params['distance'])
-
-        result = db.search(postcode, distance, miles=miles)
-        print(json.dumps(result, indent=2))
+        if postcode not in database['keys']:
+            logger.error('Postcode not valid. No information is held for it in the database.')
+        else:
+            distance, miles = distance_normalise(params['distance'])
+            result = db.search(postcode, distance, miles=miles)
+            print(json.dumps(result, indent=2))
 
 
 if __name__ == '__main__':

@@ -17,7 +17,7 @@ def database():
                 "postcode": "AL1 2RJ"
             },
         ],
-        'keys': ['AL1 2RJ']
+        'keys': ['AL1 2RJ'],
     }
 
 
@@ -45,15 +45,15 @@ def test_stores_with_data(client, database):
 
 
 def test_search_postcode_not_found(client, database):
-    api.store.database = database
-    rsp = client.get('/stores/X?q=0')
+    lib.db.database = database
+    rsp = client.get('/stores/X/circle?q=0')
 
     assert '404' in rsp.status
 
 
 def test_search_postcode_found(client, database):
-    api.store.database = database
-    rsp = client.get('/stores/al1%202rj?q=10m')
+    lib.db.database = database
+    rsp = client.get('/stores/al1%202rj/circle?q=10m')
 
     assert '200' in rsp.status
 

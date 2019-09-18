@@ -3,10 +3,25 @@
 * My favorite gif is at the top :-) and it's a jpg!
 * I did the backend task.
 * More time:
-    * Would add more test coverage and include coverage 
-    module in the project.
     * Improve model to keep two sorted lists for Name 
     and Latitude (fairly easy one so perhaps I should have done it.)
+    or a map/hash table from the normalised postcodes to the 
+    corresponding data.
+    Since the main work is the iteration through the stores 
+    to find 
+    the ones within the radius of the search origin 
+    creating a map/hash table to speed up the looking for 
+    a specific postcode was not done, however "**/stores/\<postcode\>**" 
+    was added with an iterative search to return the data for it. 
+    The "**keys**" in the model speeds up the search for a postcode to 
+    decide whether it's worth doing the full search however.
+    * Get feedback regarding the main endpoint location. 
+    At two minds about whether 
+    "**/stores?p=\<postcode\>&r=\<radius\>**" was a better way forward.
+    The mean reason not to do it was that the postcode must represent
+    a store in the database and can't just be any postcode.
+    * Would add more test coverage and include coverage 
+    module in the project.
     * Add swagger (SwaggerHub) to document API endpoints.
     * Include SonarCube to do static analysis in the project.
     * Better CLI however I created API endpoints instead.
