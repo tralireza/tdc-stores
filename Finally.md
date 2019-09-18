@@ -52,7 +52,8 @@ API interfacing with postcodes.io, concurrency design:
     
 * Improvements: 
     * I would say mentioning the unit of distance. I know it's miles
-    by default (unfortunately my default was Km!) by I did all in Km and added both as a feature.
+    by default (unfortunately my default was Km!) 
+    but I did all in Km and added miles as a feature.
     Or perhaps you wanted both in the first place :-).
     * Ability to submit on github. I created a repo in github and uploaded my solution to it
     which allows better interaction and submission (however there could be

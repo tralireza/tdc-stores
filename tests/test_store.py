@@ -34,6 +34,11 @@ def test_stores(client):
     assert '202' in health_rsp.status
 
 
+def test_data_not_ready(client):
+    rsp = client.get('/stores')
+    assert '202' in rsp.status
+
+
 def test_stores_with_data(client, database):
     api.store.database = database
     rsp = client.get('/stores')

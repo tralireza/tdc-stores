@@ -6,6 +6,9 @@ from lib import (rwlock, db)
 rw_lock = rwlock.ReadWriteLock()
 database = db.database
 
+DATA_NOT_READY = {'code': 1001, 'message': 'Data not ready yet! Please try again later.'}
+POSTCODE_NOT_FOUND = {'code': 1002, 'message': 'Postcode not found!'}
+
 bp = flask.Blueprint('stores', __name__, url_prefix='/stores')
 
 
@@ -37,7 +40,7 @@ def stores():
     try:
         if database['ready']:
             return flask.jsonify(database['stores'])
-        return flask.jsonify({'code': 1001, 'message': 'Data not ready yet! Please try again later.'}), 202
+        return flask.jsonify(DATA_NOT_READY), 202
     finally:
         rw_lock.release_read()
 
@@ -51,9 +54,9 @@ def get(postcode):
             if key in database['keys']:
                 return flask.jsonify(db.get(key))
             else:
-                return flask.jsonify({'code': 4002, 'message': 'Postcode not found!'}), 404
+                return flask.jsonify(POSTCODE_NOT_FOUND), 404
         else:
-            return flask.jsonify({'code': 4001, 'message': 'Data not ready yet! Please try again later.'}), 202
+            return flask.jsonify(DATA_NOT_READY), 202
     finally:
         rw_lock.release_read()
 
@@ -83,8 +86,8 @@ def search(postcode):
                     result = sorted(db.search(key, radius, miles=miles), key=lambda e: e[db.FLD_LATITUDE])
                     return flask.jsonify({'radius': radius, 'postcode': key, 'result': result})
             else:
-                return flask.jsonify({'code': 3002, 'message': 'Postcode not found!'}), 404
+                return flask.jsonify(POSTCODE_NOT_FOUND), 404
 
-        return flask.jsonify({'code': 3001, 'message': 'Data not ready yet! Please try again later.'}), 202
+        return flask.jsonify(DATA_NOT_READY), 202
     finally:
         rw_lock.release_read()
