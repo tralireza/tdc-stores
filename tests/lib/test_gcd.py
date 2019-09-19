@@ -1,4 +1,3 @@
-import math
 from lib import (gcd)
 
 

@@ -11,10 +11,10 @@ def database():
         'loading': False,
         'stores': [
             {
-                "latitude": 51.741753,
-                "longitude": -0.341337,
-                "name": "St_Albans",
-                "postcode": "AL1 2RJ"
+                'latitude': 51.741753,
+                'longitude': -0.341337,
+                'name': 'St_Albans',
+                'postcode': 'AL1 2RJ'
             },
         ],
         'keys': ['AL1 2RJ'],
@@ -46,7 +46,7 @@ def test_stores_with_data(client, database):
 
     assert '200' in rsp.status
     assert len(data)
-    assert data[0][lib.db.FLD_POSTCODE] == "AL1 2RJ"
+    assert data[0][lib.db.FLD_POSTCODE] == 'AL1 2RJ'
 
 
 def test_search_postcode_not_found(client, database):
