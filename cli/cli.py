@@ -2,7 +2,7 @@ import argparse
 import sys
 import json
 import logging
-from lib import (db, gcd, rwlock)
+from lib import (db, rwlock)
 
 
 FORMAT = '%(asctime)s %(levelname)s %(name)s|%(module)s|%(funcName)s|%(lineno)d %(message)s'

@@ -76,7 +76,7 @@ def search(postcode):
                         radius = radius[:-2]
                     elif radius.lower().endswith('m'):
                         radius = radius[:-1]
-                    radius = int(radius)
+                    radius = float(radius)
                     if radius < 0:
                         raise ValueError
                 except ValueError:

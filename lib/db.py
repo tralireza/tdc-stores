@@ -43,7 +43,6 @@ def search(postcode, radius, miles=False):
     result = []
     for store in database['stores']:
         if postcode != store[FLD_POSTCODE]:
-            target = (0, 0)
             try:
                 target = (store[FLD_LATITUDE], store[FLD_LONGITUDE])
             except KeyError:
@@ -86,7 +85,7 @@ def fetch_geo_data(stores, logger=None):
                     logger.error('Could not load geo-data! Status: ' + rsp.getcode())
 
         if logger:
-            logger.info('Loaded data points in range: %d -> %d' % (i, i + len(postcodes)))
+            logger.info('Loaded data points in range: %d -> %d' % (i + 1, i + len(postcodes)))
 
     return geo_data, has_error
 

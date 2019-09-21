@@ -5,7 +5,7 @@ RUN pip install --no-cache-dir Flask pytest
 
 EXPOSE 5000
 HEALTHCHECK --interval=1m --timeout=3s --retries=1 \
-    CMD curl -f http://127.0.0.5000/status || exit 1
+    CMD curl -f http://127.0.0.5000/health || exit 1
 
 WORKDIR /opt/tdc
 
